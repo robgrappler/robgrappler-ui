@@ -1,0 +1,67 @@
+---
+export interface CTA {
+  label: string;
+  href: string;
+}
+
+export interface Props {
+  kicker?: string;
+  title?: string;
+  tagline?: string;
+  cta?: CTA;
+  secondaryCta?: CTA;
+}
+
+const {
+  kicker = 'Design System Draft',
+  title = 'Robgrappler UI',
+  tagline = 'Ship the alpha aesthetic—fast. Tokens, typography, and components designed to look expensive and feel inevitable.',
+  cta = { label: 'Request access', href: '#access' },
+  secondaryCta = { label: 'Design tokens', href: '/design-system' }
+} = Astro.props;
+---
+<section class="relative overflow-hidden py-16 sm:py-24">
+  <div class="absolute inset-0 bg-gradient-to-br from-black via-[#0b0615] to-black opacity-95" />
+  <div class="absolute inset-0 opacity-70" style="background-image: var(--background-image-noise);"></div>
+
+  <div class="relative mx-auto max-w-6xl px-4">
+    <div class="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+      <div class="max-w-2xl">
+        <p class="text-sm uppercase tracking-[0.24em] text-gray-400">
+          {kicker}
+        </p>
+        <h1 class="mt-2">
+          {title}
+        </h1>
+        <p class="mt-4 max-w-xl text-lg text-gray-300">
+          {tagline}
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a class="btn btn-lg" href={cta.href}>
+            {cta.label}
+          </a>
+          <a
+            class="btn btn-lg bg-transparent text-gray-200 border border-white/10 hover:border-primary hover:text-primary"
+            href={secondaryCta.href}
+          >
+            {secondaryCta.label}
+          </a>
+        </div>
+      </div>
+
+      <aside class="rounded-2xl border border-white/10 bg-black/30 p-6 backdrop-blur">
+        <h2 class="text-xs uppercase tracking-[0.22em] text-gray-400">
+          Palette
+        </h2>
+        <div class="mt-4 grid grid-cols-3 gap-2">
+          <div class="h-10 rounded bg-primary shadow shadow-primary/35"></div>
+          <div class="h-10 rounded bg-[#070711] border border-white/10"></div>
+          <div class="h-10 rounded bg-[#2A1639]"></div>
+        </div>
+        <p class="mt-5 text-sm text-gray-400">
+          Dark gold. Deep ink. Luxury minimalism.
+        </p>
+      </aside>
+    </div>
+  </div>
+</section>
